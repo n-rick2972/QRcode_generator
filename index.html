@@ -12,12 +12,55 @@
   <body>
     <h1>QR Code Generator</h1>
     <div class="container">
-      <p>Enter your text or URL</p>
-      <input type="text" placeholder="Text or URL" id="qrText" />
+      <div class="custom">
+        <p>Enter your text or URL</p>
+        <input type="text" placeholder="Text or URL" id="qrText" />
+        <p>Size(150-1000px)</p>
+        <div class="size">
+          <input
+            type="text"
+            step="1"
+            name="height"
+            value="150"
+            min="150"
+            max="1000"
+            placeholder="Height"
+            id="qrHeight"
+          />
+          <span>×</span
+          ><input
+            type="text"
+            step="1"
+            name="width"
+            value="150"
+            min="150"
+            max="1000"
+            placeholder="Width"
+            readonly
+            id="qrWidth"
+          />
+        </div>
+        <p>Color</p>
+        <select name="color" size="1" id="color">
+          <option value="333" selected>black</option>
+          <option value="0000ff">blue</option>
+          <option value="000080">navy</option>
+          <option value="008000">green</option>
+          <option value="ffff00">yellow</option>
+          <option value="ff0000">red</option>
+          <option value="800080">purple</option>
+        </select>
+        <p>Data Format</p>
+        <select name="format" size="1" id="format">
+          <option value="png" selected>png</option>
+          <option value="svg">svg</option>
+        </select>
+        <button>Generate QR Code</button>
+        <p id="resetBtn">reset</p>
+      </div>
       <div id="imgBox">
         <img src="" alt="QRコード" id="qrImage" />
       </div>
-      <button>Generate QR Code</button>
     </div>
 
     <script src="app.js"></script>

@@ -16,13 +16,17 @@ h1 {
   font-size: 32px;
   font-weight: 600;
 }
+
 .container {
-  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1000px;
   padding: 25px 35px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 50px auto 0;
   background-color: #fff;
   border-radius: 10px;
 }
@@ -43,9 +47,13 @@ h1 {
   outline: none;
 }
 
+.custom {
+  width: 45%;
+}
+
 #imgBox {
   display: block;
-  width: 200px;
+  width: 45%;
   max-height: 0;
   overflow: hidden;
   transition: max-height 1s;
@@ -53,12 +61,12 @@ h1 {
 
 #imgBox img {
   width: 100%;
-  padding: 10px;
 }
 
 #imgBox.is-show {
-  max-height: 300px;
+  max-height: 450px;
   margin: 30px auto;
+  padding: 10px;
   border: 1px solid #d1d1d1;
 }
 
@@ -84,11 +92,47 @@ h1 {
   }
 }
 
+.size {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.size input {
+  width: 100px;
+}
+
+.size input::-webkit-outer-spin-button,
+.size input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+/* Firefox */
+.size input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.size span {
+  padding: 0 20px;
+  font-size: 20px;
+}
+
+.container select {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border-radius: 5px;
+  border: 1px solid #494eea;
+  outline: none;
+}
+
 .container button {
   width: 100%;
   height: 50%;
   padding: 1em 0;
-  margin: 20px 0;
+  margin: 20px 0 5px;
   background-color: #494eea;
   border: none;
   outline: none;
@@ -96,5 +140,14 @@ h1 {
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   color: #fff;
   font-weight: 600;
+  cursor: pointer;
+}
+
+#resetBtn {
+  text-align: center;
+  color: #494eea;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: underline;
   cursor: pointer;
 }
