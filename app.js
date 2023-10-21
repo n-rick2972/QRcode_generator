@@ -2,6 +2,7 @@ const imgBox = document.getElementById("imgBox");
 const qrText = document.getElementById("qrText");
 const qrImage = document.getElementById("qrImage");
 const btn = document.querySelector("button");
+const dlBtn = document.getElementById("downloadBtn");
 
 // サイズ指定(同値にする)
 const qrHeight = document.getElementById("qrHeight");
@@ -38,7 +39,7 @@ const colorCode = () => {
   }
 };
 
-// 選択されているカラーコードを取得
+// 選択されている拡張子を取得
 const selectFormat = () => {
   const formatBox = document.getElementById("format");
   return formatBox.selectedIndex === 0 ? "png" : "svg";
@@ -53,10 +54,8 @@ GenerateQR = () => {
       }x${qrWidth.value}&data=${
         qrText.value
       }&color=${colorCode()}&format=${selectFormat()}`;
-
-      console.log(qrImage.src);
-
       imgBox.classList.add("is-show");
+      dlBtn.classList.add("is-show");
     } else {
       qrText.classList.add("error");
       setTimeout(() => {
@@ -72,4 +71,32 @@ const resetBtn = document.getElementById("resetBtn");
 
 resetBtn.addEventListener("click", () => {
   location.reload();
+});
+
+// ダウンロードボタン
+function downloadFromUrlAutomatically(url, fileName) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.responseType = "blob";
+  xhr.onload = function (e) {
+    if (this.status == 200) {
+      var urlUtil = window.URL || window.webkitURL;
+      var imgUrl = urlUtil.createObjectURL(this.response);
+      var link = document.createElement("a");
+      link.href = imgUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+  xhr.send();
+}
+
+dlBtn.addEventListener("click", () => {
+  data = qrImage.src;
+  url = `qr-cpde.${selectFormat()}`;
+
+  /// URLから自動ダウンロードさせる
+  downloadFromUrlAutomatically(data, url);
 });
